@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import Header from "./components/Header";
 import ButtonAdSub from "./components/ButtonAdSub";
+import { amountFormat } from "./helpers";
 
 function App() {
   //El state va a retornar un arreglo entonces se va extraer de la siguiente manera haciendo destructuring del arreglo
@@ -20,25 +21,25 @@ function App() {
     setAmount(Number(e.target.value));
   }
   function decreaseButton() {
-    const value = amount - STEP;
+    const decrease = amount - STEP;
 
-    if (value < MIN) {
+    if (decrease < MIN) {
       alert("Incorrect amount");
       return;
     }
 
-    setAmount(value);
+    setAmount(decrease);
   }
 
   function increaseButton() {
-    const value = amount + STEP;
+    const increase = amount + STEP;
 
-    if (value > MAX) {
+    if (increase > MAX) {
       alert("Incorrect amount");
       return;
     }
 
-    setAmount(value);
+    setAmount(increase);
   }
 
   return (
@@ -58,7 +59,7 @@ function App() {
         step={STEP}
       />
       <p className="text-center my-10 text-5xl font-extrabold text-indigo-600">
-        {amount}
+        {amountFormat(amount)}
       </p>
     </div>
   );
